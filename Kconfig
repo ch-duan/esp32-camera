@@ -62,19 +62,26 @@ menu "Camera configuration"
         help
             Enable this option if you want to use the GC0308.
             Disable this option to save memory.
-            
+
     config BF3005_SUPPORT
         bool "Support BF3005(BYD3005) VGA"
         default y
         help
             Enable this option if you want to use the BF3005.
             Disable this option to save memory.
-            
+
     config BF20A6_SUPPORT
         bool "Support BF20A6(BYD20A6) VGA"
         default y
         help
             Enable this option if you want to use the BF20A6.
+            Disable this option to save memory.
+
+    config BF2013_SUPPORT
+        bool "Support BF2013(BYD2013) VGA"
+        default y
+        help
+            Enable this option if you want to use the BF2013.
             Disable this option to save memory.
 
     config SC101IOT_SUPPORT
@@ -108,7 +115,7 @@ menu "Camera configuration"
         help
             Enable this option if you want to use the SC030IOT.
             Disable this option to save memory.
-    
+
     config SC031GS_SUPPORT
         bool "Support SC031GS VGA"
         default n
@@ -135,7 +142,7 @@ menu "Camera configuration"
     help
         Increasing this value can reduce the initialization time of the sensor.
         Please refer to the relevant instructions of the sensor to adjust the value.
-    
+
     choice GC_SENSOR_WINDOW_MODE
         bool "GalaxyCore Sensor Window Mode"
         depends on (GC2145_SUPPORT || GC032A_SUPPORT || GC0308_SUPPORT)

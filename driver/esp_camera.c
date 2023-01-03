@@ -60,7 +60,9 @@
 #if CONFIG_BF20A6_SUPPORT
 #include "bf20a6.h"
 #endif
+#if CONFIG_BF2013_SUPPORT
 #include "bf2013.h"
+#endif
 #if CONFIG_SC101IOT_SUPPORT
 #include "sc101iot.h"
 #endif
@@ -132,9 +134,9 @@ static const sensor_func_t g_sensors[] = {
 #if CONFIG_BF3005_SUPPORT
     {bf3005_detect, bf3005_init},
 #endif
-// #if CONFIG_BF2013_SUPPORT
+#if CONFIG_BF2013_SUPPORT
     {bf2013_detect, bf2013_init},
-// #endif
+#endif
 #if CONFIG_BF20A6_SUPPORT
     {bf20a6_detect, bf20a6_init},
 #endif

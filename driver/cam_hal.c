@@ -32,8 +32,8 @@
 #endif // ESP_IDF_VERSION_MAJOR
 #define ESP_CAMERA_ETS_PRINTF ets_printf
 
-#if CONFIG_CAM_TASK_STACK_SIZE
-#define CAM_TASK_STACK             CONFIG_CAM_TASK_STACK_SIZE
+#if CONFIG_CAMERA_TASK_STACK_SIZE
+#define CAM_TASK_STACK             CONFIG_CAMERA_TASK_STACK_SIZE
 #else
 #define CAM_TASK_STACK             (2*1024)
 #endif
@@ -437,7 +437,7 @@ esp_err_t cam_deinit(void)
     }
 
     ll_cam_deinit(cam_obj);
-    
+
     if (cam_obj->dma) {
         free(cam_obj->dma);
     }

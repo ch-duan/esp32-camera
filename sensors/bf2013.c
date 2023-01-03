@@ -122,13 +122,13 @@ static int reset(sensor_t *sensor) {
     SCCB_Write(sensor->slv_addr, regs[i][0], regs[i][1]);
     value = 0;
     value = SCCB_Read(sensor->slv_addr, regs[i][0]);
-    if (value != regs[i][1]) {
-      ESP_LOGE(TAG, "regs:[%02X] write: %02X,read:%02X", regs[i][0], regs[i][1],
-               value);
-    } else {
-      ESP_LOGI(TAG, "regs:[%02X] write: %02X,read:%02X", regs[i][0], regs[i][1],
-               value);
-    }
+    // if (value != regs[i][1]) {
+    //   ESP_LOGE(TAG, "regs:[%02X] write: %02X,read:%02X", regs[i][0], regs[i][1],
+    //            value);
+    // } else {
+    //   ESP_LOGI(TAG, "regs:[%02X] write: %02X,read:%02X", regs[i][0], regs[i][1],
+    //            value);
+    // }
 
     // ESP_LOGI(TAG, "regs:[%02X],read:%02X", regs[i][0],
     //          SCCB_Read(sensor->slv_addr, regs[i][0]));
@@ -172,7 +172,7 @@ static int set_framesize(sensor_t *sensor, framesize_t framesize) {
   uint16_t h = resolution[framesize].height;
 
   sensor->status.framesize = framesize;
-
+  ESP_LOGI(TAG, "set_framesize is %d\r\n", framesize);
   // Write MSBs
   ret |= SCCB_Write(sensor->slv_addr, HSTART, 0);
   ret |= SCCB_Write(sensor->slv_addr, HSTOP, w >> 2);
@@ -182,9 +182,7 @@ static int set_framesize(sensor_t *sensor, framesize_t framesize) {
 
   // Write LSBs
   ret |= SCCB_Write(sensor->slv_addr, VHREF, 0);
-  printf("%s %d\r\n", __func__, __LINE__);
   if ((w <= 320) && (h <= 240)) {
-    printf("%s %d\r\n", __func__, __LINE__);
     // Enable auto-scaling/zooming factors
     // ret |= SCCB_Write(sensor->slv_addr, 0x12, 0x50);
     set_reg_bits(sensor, 0x12, 4, 1, 1);
@@ -355,14 +353,14 @@ static int init_status(sensor_t *sensor) {
   const uint8_t(*regs)[2];
 
   // Write default regsiters
-  for (i = 0, regs = default_regs; i < sizeof(default_regs) / 2; i++) {
-    // SCCB_Write(sensor->slv_addr, regs[i][0], regs[i][1]);
-    // ESP_LOGI(TAG, "regs:[%02X] write: %02X,read:%02X", regs[i][0],
-    // regs[i][1],
-    //  SCCB_Read(sensor->slv_addr, regs[i][0]));
-    ESP_LOGI(TAG, "regs:[%02X],read:%02X", regs[i][0],
-             SCCB_Read(sensor->slv_addr, regs[i][0]));
-  }
+  //   for (i = 0, regs = default_regs; i < sizeof(default_regs) / 2; i++) {
+  //     ESP_LOGI(TAG, "regs:[%02X],read:%02X", regs[i][0],
+  //              SCCB_Read(sensor->slv_addr, regs[i][0]));
+  //   }
+
+//   for (i = 0; i <= 0xfd; i++) {
+//     ESP_LOGI(TAG, "regs:[%02X],read:%02X", i, SCCB_Read(sensor->slv_addr, i));
+//   }
 
   return 0;
 }
